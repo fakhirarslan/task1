@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import { login } from './UserFunctions'
+import React, { Component } from 'react';
+import { login } from './UserFunctions';
+import history from '../utils/history';
 
 class Login extends Component {
   constructor() {
@@ -26,12 +27,15 @@ class Login extends Component {
     }
 
     login(user).then(res => {
-      if (res) {
+      if (res.email) {
         console.log(res.email);
         this.props.update(res.email, res.password);
-        this.props.history.push('/profile');
+        history.push('/profile');
+        //history.go();
       }
-      
+      else {
+        alert("User Does Not Exist!");
+      }
     })
   }
 
@@ -78,4 +82,4 @@ class Login extends Component {
   }
 }
 
-export default Login
+export default Login;

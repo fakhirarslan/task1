@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Profile extends Component {
 
   render() {
-    console.log(this.props.email);
+    console.log(this.props.profileInfo);
     return (
       <div className="container">
         <div className="jumbotron mt-5">
@@ -22,7 +22,7 @@ class Profile extends Component {
               </tr>
               <tr>
                 <td>Email</td>
-                <td>{this.props.email}</td>
+                <td>{this.props.profileInfo.email}</td>
               </tr>
             </tbody>
           </table>

@@ -28,7 +28,7 @@ class Landing extends Component {
       <ul className="navbar-nav">
         <li className="nav-item">
           <Link to="/profile" className="nav-link">
-            User
+            {this.props.email}
           </Link>
         </li>
         <li className="nav-item">
@@ -57,13 +57,6 @@ class Landing extends Component {
           className="collapse navbar-collapse justify-content-md-center"
           id="navbarsExample10"
         >
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link to="/" className="nav-link">
-                Home
-              </Link>
-            </li>
-          </ul>
           {localStorage.usertoken ? userLink : loginRegLink}
         </div>
       </nav>

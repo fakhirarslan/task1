@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import React, { Component } from 'react';
+import { Router, Route } from 'react-router-dom';
 
-import Navbar from './components/Navbar'
-import Landing from './components/Landing'
-import Login from './components/Login'
-import Register from './components/Register'
-import Profile from './components/Profile'
+import Navbar from './components/Navbar';
+import Landing from './components/Landing';
+import Login from './components/Login';
+import Register from './components/Register';
+import history from './utils/history';
 
 class App extends Component {
   constructor() {
@@ -13,8 +13,9 @@ class App extends Component {
 
     this.state = {
       email: '',
-      password: ''
-    }
+      password: '',
+      logged: false
+    };
   }
 
   updateState = (email, password) => {
@@ -22,23 +23,24 @@ class App extends Component {
       email: email,
       password: password
     });
+    console.log(this.state);
   }
 
   render() {
     return (
-      <Router>
+      <Router history={history}>
         <div className="App">
-          <Navbar />
-          <Route exact path="/" component={Landing} />
+          <Navbar email={this.state.email}/>
+          <Route exact path="/" component={() => <Login update={this.updateState} />} />
           <div className="container">
             <Route exact path="/register" component={Register} />
-            <Route exact path="/login" component={ () => <Login update={this.updateState}/> } />
-            <Route exact path="/profile" component={ () => <Profile profileInfo={ this.state }/>} />
+            <Route exact path="/login" component={() => <Login update={this.updateState} />} />
+            <Route exact path="/profile" component={Landing} />
           </div>
         </div>
       </Router>
-    )
+    );
   }
 }
 
-export default App
+export default App;
